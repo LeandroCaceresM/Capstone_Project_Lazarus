@@ -1,0 +1,159 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo general */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #eaf1fb, #d6e0f0);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  color: #333;
+}
+
+/* Título principal */
+body > h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 500px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Título interno */
+.titulo {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: #222;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Etiquetas y campos */
+form strong {
+  display: block;
+  margin: 15px 0 5px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+form label {
+  display: block;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #009688;
+  outline: none;
+}
+
+/* Botón de envío */
+button#button {
+  width: 100%;
+  padding: 12px;
+  background-color: #009688;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button#button:hover {
+  background-color: #00796b;
+  transform: translateY(-2px);
+}
+
+button#button:active {
+  transform: translateY(0);
+}
+
+/* Separador */
+.separador {
+  margin: 25px 0;
+  border-top: 1px solid #e0e9f7;
+}
+
+/* Mensaje de error */
+.error-message {
+  color: #e74c3c;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Enlace de volver */
+.volver {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.volver .link {
+  color: #00796b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.volver .link:hover {
+  text-decoration: underline;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo para móviles */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 25px 15px;
+    border-radius: 10px;
+  }
+
+  .titulo {
+    font-size: 1.3rem;
+  }
+
+  input[type="text"] {
+    font-size: 0.95rem;
+  }
+
+  button#button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}

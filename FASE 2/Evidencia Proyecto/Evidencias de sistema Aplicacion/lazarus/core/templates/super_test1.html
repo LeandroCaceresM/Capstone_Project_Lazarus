@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salud fisica</title>
+    <link rel="stylesheet" href="{% static 'css/test_style.css' %}">
+</head>
+<body>
+    <h1>Salud física</h1>
+
+    <div class="form-container">
+        <form action="/salud_fisica_enviar/" method="POST">
+            {% csrf_token %}
+            
+            <h1 class="titulo">Super test</h1>
+
+            <div class="form-group">
+                <strong>¿Padeces de algún problema de salud física?</strong>
+                <input name="salud_fisica" placeholder="Describe tu salud" type="text" id="salud_fisica" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Consumes medicamentos?</strong>
+                <input name="consumo_medicamentos" placeholder="Medicamentos que consumes" type="text" id="consumo_medicamentos" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Alergias?</strong>
+                <input name="alergias" placeholder="Medicamentos, alimentos u otras sustancias" type="text" id="alergias" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Tienes problemas de visión?</strong>
+                <input name="problemas_vision" placeholder="Ej: miopía, astigmatismo, lentes" type="text" id="problemas_vision" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Tienes problemas de audición?</strong>
+                <input name="problemas_audicion" placeholder="Ej: pérdida parcial, audífono" type="text" id="problemas_audicion" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Haces ejercicio regularmente?</strong>
+                <input name="ejercicio" placeholder="Tipo y frecuencia de ejercicio" type="text" id="ejercicio" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Has estado hospitalizado o te has hecho alguna cirugía?</strong>
+                <input name="hospitalizaciones" placeholder="Describe fechas y motivos" type="text" id="hospitalizaciones" required>
+            </div>
+
+            <button type="submit" id="button">Enviar</button>
+
+            <div class="separador"></div>
+
+            {% if error_message %}
+                <div class="error-message">{{ error_message }}</div>    
+            {% endif %}
+
+            <div class="volver">
+                <a href="/" class="link">Volver</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

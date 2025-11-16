@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ nombre }} - Estudiantes</title>
+    <link rel="stylesheet" href="{% static 'css/stylemedico.css' %}">
+</head> 
+<body>
+    <h1>Panel de {{ nombre }}</h1>
+
+    <div class="form-container">
+        <h1 class="titulo">Estudiantes Registrados</h1>
+
+        <table class="tabla-usuarios">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Carrera</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in usuarios %}
+                <tr>
+                    <td>{{ u.nombre }}</td>
+                    <td>{{ u.apellido }}</td>
+                    <td>{{ u.carrera }}</td>
+                    <td>
+                        <form action="/evaluar_test/{{ u.id_usuario }}/" method="get">
+                            <button type="submit" class="btn-evaluar">Ver resultados</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No hay estudiantes registrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="separador"></div>
+
+        {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+        {% endif %}
+
+        <form action="/logout_view/" method="get">
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
+        </form>
+    </div>
+</body>
+</html>

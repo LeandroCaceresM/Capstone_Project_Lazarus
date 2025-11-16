@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crear usuario</title>
+  <link rel="stylesheet" href="{% static 'css/login_registro_style.css' %}">
+</head>
+<body>
+  <main class="login-wrapper">
+    <section class="login-box">
+      <h1>Registro de usuario</h1>
+      <p class="subtitle">Completa tus datos para crear una cuenta</p>
+
+      <form action="/usercreate/" method="POST" class="login-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
+        </div>
+
+        <div class="form-group">
+          <label for="rut">RUT sin puntos ni guion</label>
+          <input type="text" id="rut" name="rut" placeholder="Ej: 123456789" maxlength="12" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha_nacimiento">Fecha de nacimiento</label>
+          <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+          <small id="error_fecha" style="color: red; display: none;">
+            Por favor, debes tener al menos 16 años.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono" name="telefono" placeholder="Ej: 56912345678" maxlength="11" required>
+          <small id="error_telefono" style="color: red; display: none;">
+            El teléfono debe tener el formato 569XXXXXXXX.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" placeholder="Crea una contraseña segura" required>
+        </div>
+
+        <div class="form-group">
+          <label for="id_carrera">Carrera</label>
+          <select id="id_carrera" name="id_carrera" required>
+            <option value="" disabled selected>Selecciona tu carrera</option>
+            {% for carrera in carreras %}
+              <option value="{{ carrera.id_carrera }}">{{ carrera.nombre_carrera }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit" class="btn-login">Crear cuenta</button>
+
+        {% if error_message %}
+          <div class="error-message">{{ error_message }}</div>
+        {% endif %}
+
+        <hr class="divider">
+
+        <p class="registro-text">
+          <a href="/" class="link">← Volver al inicio</a>
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <!-- ================== TU ARCHIVO JS SEPARADO ================== -->
+  <script src="{% static 'js/validaciones_registro.js' %}"></script>
+
+</body>
+</html>

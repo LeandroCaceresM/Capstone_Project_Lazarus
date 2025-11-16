@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Fracaso de estudios </title>
+    <link rel="stylesheet" href="{% static 'css/test_style.css' %}">
+</head>
+<body>
+    <h1>Vida academica </h1>
+
+    <div class="form-container">
+        <form action="/vida_academica_enviar/" method="POST">
+            {% csrf_token %}
+            
+            <h1 class="titulo">Super test</h1>
+
+            <div class="form-group">
+                <strong>¿Como calificas tu rendimiento academico de este año?</strong>
+                <input name="rendimiento_anual" placeholder="rendimiento academico" type="text" id="rendimiento_anual" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Has sufrido dificultades academicas este año?</strong>
+                <input name="dificultades_academicas" placeholder="dificultades academicas" type="text" id="dificultades_academicas" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Como describes tu relacion con tus profesores y tus compañeros?</strong>
+                <input name="relacion_academica" placeholder="relacion academica" type="text" id="relacion_academica" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Sientes que lo aprendido durante el año te ayudara en el mundo laboral?</strong>
+                <input name="seguridad_aprendida" placeholder="aprendido en el año" type="text" id="seguridad_aprendida" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Has estudiado materias relacionadas a tu area por tu cuenta?</strong>
+                <input name="autoestudio" placeholder="estudio" type="text" id="autoestudio" required>
+            </div>
+
+
+            <div class="form-group">
+                <strong>¿Que puedes mejorar para ser un mejor estudiante?</strong>
+                <input name="autosugerencia" placeholder="autosugerencia" type="text" id="autosugerencia" required>
+            </div>
+
+
+
+            <button type="submit" id="button">Enviar</button>
+
+            <div class="separador"></div>
+
+            {% if error_message %}
+                <div class="error-message">{{ error_message }}</div>    
+            {% endif %}
+
+            <div class="volver">
+                <a href="oficial/" class="link">Volver</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

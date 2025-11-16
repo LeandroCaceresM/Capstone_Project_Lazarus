@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel principal</title>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+</head>
+<body>
+  <main class="home-wrapper">
+    <section class="home-box">
+      <h1>Bienvenido, {{ nombre }}!</h1>
+      <p class="subtitle">Selecciona una opción para continuar</p>
+
+      <div class="button-group">
+        <form action="{% url 'Test_reconocimiento' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-action">Reconocimiento</button>
+        </form>
+
+        <form action="{% url 'super_test' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-action">Realizar super Test</button>
+        </form>
+
+        <form action="{% url 'gad7' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-action">Realizar GAD 7 Ansiedad</button>
+        </form>
+
+        <form action="{% url 'phq9' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-action">Realizar PHQ 9 Depresión</button>
+        </form>
+      </div>
+
+      <hr class="divider">
+      <div class="button-group">
+        <form action="{% url 'ver_test' %}" method="get">
+          <button type="submit" class="btn-action">Ver Tests Realizados</button>
+        </form>
+
+        <form action="/logout_view/" method="get">
+          <button type="submit" class="btn-logout">Cerrar sesión</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Botón en la esquina para ver el perfil -->
+  <a href="{% url 'ver_perfil' %}" class="btn-profile">Ver mi perfil</a>
+</body>
+</html>

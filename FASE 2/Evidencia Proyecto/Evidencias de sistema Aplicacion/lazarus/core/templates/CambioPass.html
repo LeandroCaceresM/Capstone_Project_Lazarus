@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cambia la contra</title>
+  <link rel="stylesheet" href="{% static 'css/login_registro_style.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <main class="login-wrapper">
+    <section class="login-box">
+      <h1>Escribe tu nueva contraseña</h1>
+      <p class="subtitle">Escribe tu contraseña nueva</p>
+
+      <form id="recover-password-form" action="/HacercambiarPassword/" method="POST" class="login-form">
+        {% csrf_token %}
+        <!-- Campo oculto donde se guardará el token -->
+        <input type="hidden" name="token" id="token">
+
+        <div class="form-group">
+          <label for="password">Tu nueva contraseña</label>
+          <input type="password" id="password" name="password" placeholder="Nueva contraseña" required>
+        </div>
+
+        <button type="submit" class="btn-login">Cambiar contraseña</button>
+      </form>
+
+      <div id="response-message" class="error-message" style="display:none;">
+        <p id="response-text"></p>
+      </div>
+
+      <hr class="divider">
+
+      <p class="registro-text">
+        <a href="/" class="link">← Volver al inicio</a>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // Captura el token del hash (#access_token=...) cuando se carga la página
+    window.onload = function() {
+      const hash = window.location.hash; // "#access_token=..."
+      const params = new URLSearchParams(hash.substring(1)); // quita "#"
+      const token = params.get("access_token");
+
+      if (token) {
+        document.getElementById("token").value = token;
+        console.log("Token capturado:", token);
+      } else {
+        console.warn("No se encontró access_token en la URL");
+      }
+    };
+  </script>
+</body>
+</html>

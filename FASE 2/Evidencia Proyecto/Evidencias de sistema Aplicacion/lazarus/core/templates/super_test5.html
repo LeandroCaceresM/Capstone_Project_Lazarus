@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoestima</title>
+    <link rel="stylesheet" href="{% static 'css/test_style.css' %}">
+</head>
+<body>
+    <h1>Autoestima</h1>
+
+    <div class="form-container">
+        <form action="/seguridad_autoestima_enviar/" method="POST">
+            {% csrf_token %}
+            
+            <h1 class="titulo">Super test</h1>
+
+            <div class="form-group">
+                <strong>¿Consideras que tienes una buena autoestima?</strong>
+                <input name="autoestima" placeholder="autoestima" type="text" id="autoestima" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Que inseguiridades tienes?</strong>
+                <input name="inseguiridades" placeholder="inseguiridades" type="text" id="inseguiridades" required>
+            </div>
+
+            <div class="form-group">
+                <strong>Di algun logro que hayas logrado (no es necesario que sea relacionado a algo academico) </strong>
+                <input name="logros_personales" placeholder="Tus logros personales" type="text" id="logros_personales" required>
+            </div>
+
+            <div class="form-group">
+                <strong>Di lo que consideras que son tus mayores debilidades</strong>
+                <input name="debilidades" placeholder="Lo que consideres como tus debilidades" type="text" id="debilidades" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Cual es tu mayor miedo que tienes?</strong>
+                <input name="miedos" placeholder="Tus miedos" type="text" id="miedos" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Te sientes conforme con tu vida actualmente?</strong>
+                <input name="opinion_vida" placeholder="Tu opinion de vida" type="text" id="opinion_vida" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Que objetivo quieres cumplir?</strong>
+                <input name="objetivo" placeholder="objetivo" type="text" id="objetivo" required>
+            </div>
+
+            <button type="submit" id="button">Enviar</button>
+
+            <div class="separador"></div>
+
+            {% if error_message %}
+                <div class="error-message">{{ error_message }}</div>    
+            {% endif %}
+
+            <div class="volver">
+                <a href="/" class="link">Volver</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

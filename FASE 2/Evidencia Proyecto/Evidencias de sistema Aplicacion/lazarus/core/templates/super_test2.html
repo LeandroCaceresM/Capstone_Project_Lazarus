@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Salud mental</title>
+    <link rel="stylesheet" href="{% static 'css/test_style.css' %}">
+</head>
+<body>
+    <h1>Salud mental</h1>
+
+    <div class="form-container">
+        <form action="/salud_mental_enviar/" method="POST">
+            {% csrf_token %}
+            
+            <h1 class="titulo">Super test</h1>
+
+            <div class="form-group">
+                <strong>¿Como crees que te sientes psicologicamente?</strong>
+                <input name="opinion_psicologica" placeholder="opinion psicologica" type="text" id="opinion_psicologica" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Has recibido tratamiento psicologico alguna vez?</strong>
+                <input name="tratamiento_psicologico" placeholder="tratamiento psicologico " type="text" id="tratamiento_psicologico" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Estados criticos de animo como depresion, ansiedad?</strong>
+                <input name="estado_critico" placeholder="estado critico" type="text" id="estado_critico" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿En que momento piensas que es mas probale que sufras de algun estado como la pregunta anterior?</strong>
+                <input name="Tendecia_critica" placeholder="Tendecia critica " type="text" id="Tendecia_critica" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Estos episodios te han llevado a cometer actos autoinflictivos?</strong><br>
+                <input name="Acciones_autoinflictivas" placeholder="Describe brevemente..." type="text" id="Acciones_autoinflictivas" required>
+                <label>
+                    <input type="checkbox" id="no_responder_autoinflictivas" onclick="toggleInput('Acciones_autoinflictivas', this)">
+                    Prefiero no responder
+                </label>
+            </div>
+
+            <script>
+                function toggleInput(inputId, checkbox) {
+                    const input = document.getElementById(inputId);
+
+                    if (checkbox.checked) {
+                        input.value = "Prefiero no responder";
+                        input.readOnly = true;
+                        input.removeAttribute('required');
+                    } else {
+                        input.value = "";
+                        input.readOnly = false;
+                        input.setAttribute('required', '');
+                        input.focus();
+                    }
+                }
+            </script>
+
+
+            <div class="form-group">
+                <strong>¿Te crees capaz de autogestionar tus pensamientos por ti mismo?</strong>
+                <input name="autogestion" placeholder="autogestion" type="text" id="autogestion" required>
+            </div>
+
+            <div class="form-group">
+                <strong>¿Te consideras a ti mismo como una persona debil emocionalmente?</strong>
+                <input name="autocalificacion" placeholder="opinion personal" type="text" id="autocalificacion " required>
+            </div>
+
+
+            <button type="submit" id="button">Enviar</button>
+
+            <div class="separador"></div>
+
+            {% if error_message %}
+                <div class="error-message">{{ error_message }}</div>    
+            {% endif %}
+
+            <div class="volver">
+                <a href="oficial/" class="link">Volver</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
